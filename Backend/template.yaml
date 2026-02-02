@@ -437,7 +437,7 @@ Resources:
   CognitoDomain:
     Type: AWS::Cognito::UserPoolDomain
     Properties:
-      Domain: containerbazar-rent-club-auth"
+      Domain: containerbazar-rent-club-auth
       UserPoolId: !Ref CognitoUserPool
 
   CognitoAdminGroup:
