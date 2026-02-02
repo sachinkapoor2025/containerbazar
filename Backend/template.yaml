@@ -471,7 +471,7 @@ Resources:
   SellCognitoUserPoolClient:
     Type: AWS::Cognito::UserPoolClient
     Properties:
-      ClientName: !Sub "${AWS::StackName}-sell-club-client"
+      ClientName: !Sub "${AWS::StackName}-sell-club-client
       UserPoolId: !Ref SellCognitoUserPool
       GenerateSecret: false
 
@@ -506,7 +506,7 @@ Resources:
   SellCognitoDomain:
     Type: AWS::Cognito::UserPoolDomain
     Properties:
-      Domain: containerbazar-sell-club-auth"
+      Domain: containerbazar-sell-club-auth
       UserPoolId: !Ref SellCognitoUserPool
 
   SellCognitoAdminGroup:
