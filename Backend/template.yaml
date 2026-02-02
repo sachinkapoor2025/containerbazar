@@ -437,7 +437,7 @@ Resources:
   CognitoDomain:
     Type: AWS::Cognito::UserPoolDomain
     Properties:
-      Domain: !Sub "${AWS::StackName}-rent-club-auth"
+      Domain: containerbazar-rent-club-auth"
       UserPoolId: !Ref CognitoUserPool
 
   CognitoAdminGroup:
@@ -506,7 +506,7 @@ Resources:
   SellCognitoDomain:
     Type: AWS::Cognito::UserPoolDomain
     Properties:
-      Domain: !Sub "${AWS::StackName}-sell-club-auth"
+      Domain: containerbazar-sell-club-auth"
       UserPoolId: !Ref SellCognitoUserPool
 
   SellCognitoAdminGroup:
