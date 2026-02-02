@@ -1,0 +1,11 @@
+version = 0.1
+
+[dev.deploy.parameters]
+stack_name = "container-bazar"
+resolve_s3 = true
+s3_prefix = "containerbazar"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+[dev.global.parameters]
+region = "ap-south-1"
