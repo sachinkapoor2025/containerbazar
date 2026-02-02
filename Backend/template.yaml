@@ -471,7 +471,7 @@ Resources:
   SellCognitoUserPoolClient:
     Type: AWS::Cognito::UserPoolClient
     Properties:
-      ClientName: !Sub "${AWS::StackName}-sell-club-client
+      ClientName: !Sub "${AWS::StackName}-sell-club-client"
       UserPoolId: !Ref SellCognitoUserPool
       GenerateSecret: false
 
