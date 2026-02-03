@@ -130,9 +130,9 @@
             <label>Phone <span class="req">*</span></label>
             <div style="display:flex; gap:8px">
               <select id="phoneCountry" aria-label="Country code">
-                <option value="+91" >India (+91)</option>
+                <option value="+91" selected>India (+91)</option>
                 <option value="+971">United Arab Emirates (+971)</option>
-                <option value="+1" selected>United States (+1)</option>
+                <option value="+1" >United States (+1)</option>
                 <option value="+44">United Kingdom (+44)</option>
                 <option value="+61">Australia (+61)</option>
                 <option value="+65">Singapore (+65)</option>
@@ -143,7 +143,7 @@
               </select>
               <input id="phoneLocal" inputmode="numeric" placeholder="9876543210" aria-label="Phone without country code" />
             </div>
-            <small class="muted">Digits only — we’ll send +E.164 to the API.</small>
+            <small class="muted">Digits only </small>
           </div>
         </div>
 
@@ -181,43 +181,47 @@
       </table>
     </div>
   </section>
-  <!-- Top content from provided document -->
-  <section class="content-intro" style="margin-bottom:28px;">
-    <h1>Track Your Shipping Container Online in the USA</h1>
+  <!-- SEO intro content panel (headings from your document) -->
+  <section class="content-panel content-intro">
+    <h1>Track Your Shipping Container Online</h1>
     <p>
-      Tracking your shipping container in the USA has never been easier. With our advanced online container tracking system, you can instantly monitor shipment status, current container location, expected delivery timelines, and carrier updates—all in one place. Whether you're managing a single shipment or handling multiple containers across U.S. ports, our platform ensures real-time visibility and accuracy. Designed for shippers, freight forwarders, logistics companies, and individuals, this tool helps streamline your supply chain and reduce delays by offering fast and reliable tracking information. Stay informed at every step of the journey with comprehensive tracking features tailored for the U.S. market.
+      Tracking your shipping container online is the fastest and most convenient way to stay updated with real-time location, shipment status, and estimated delivery timelines. Whether you are an importer, exporter, freight forwarder, or logistics company, having access to accurate container tracking information helps improve planning, reduces delays, and ensures complete visibility throughout the shipping journey. At Container Bazar, we simplify container tracking by allowing users to enter a container number, booking reference, or bill of lading details to instantly retrieve the latest updates from major global shipping carriers. Our system delivers streamlined tracking results that help users stay informed and manage shipments more efficiently, with accurate vessel schedules, port updates, and live movement data. With our tool, customers can monitor containers from the moment they are dispatched to their arrival at the final destination, making it easier than ever to track logistics operations effectively.
     </p>
 
-    <h2>Enter Your Container Number for Real-Time Tracking</h2>
+    <h2>Enter Container Number & Carrier Details</h2>
     <p>
-      To begin tracking, simply enter your container number into the search bar. Our system immediately scans carrier databases to provide the most up-to-date information, including container movement, gate-in and gate-out records, vessel loading details, and port-handling updates. Real-time tracking helps you stay ahead of schedule, anticipate delays, and plan logistics more efficiently. This ensures seamless coordination whether your container is shipping domestically or arriving from an international route into a U.S. port.
+      To begin tracking, simply enter your container number into the search field. A standard container number consists of four letters followed by seven digits, uniquely identifying your shipment across global ports and carrier systems. Providing the carrier name—such as Maersk, MSC, CMA CGM, Hapag-Lloyd, or ONE—helps enhance the accuracy of the search results and ensures that you receive the most up-to-date tracking details. When available, adding the shipping line information allows our system to pull data directly from the carrier’s official tracking database, giving you real-time updates including gate movements, vessel loading status, port departures, and customs release information. This step is essential for businesses that handle multiple containers or shipments across different lines, ensuring reliability and time-saving efficiency for logistics planning.
     </p>
 
-    <h2>How to Track Your Shipping Container Across U.S. Ports</h2>
+    <h2>How to Track Your Container Shipment</h2>
     <p>
-      Our tracking system is fully compatible with all major U.S. ports, including Los Angeles, Long Beach, Houston, New York–New Jersey, Savannah, Miami, and more. When you enter your container number, the platform automatically identifies the container's last recorded location and expected next movement. You can easily view carrier updates, vessel schedules, customs clearance progress, and drayage status. Designed for clarity and simplicity, the platform helps you monitor shipments with just a few clicks, eliminating the need to manually check multiple carrier websites.
+      Tracking your container shipment involves a simple process: enter your container number or booking details, select the carrier (optional), and review the tracking results generated by our system. Once the information is submitted, the system scans carrier databases and vessel AIS tracking to provide the latest status updates. These updates often include departure port, transshipment port, current vessel position, voyage number, and the expected arrival date at the destination port. This ensures full visibility across the entire supply chain. The tool is especially beneficial for importers and exporters who need to anticipate delivery windows, manage warehouse operations, coordinate onward transportation, or communicate shipment progress to customers. With continuous updates, you can avoid delays, manage unforeseen disruptions, and take timely actions based on accurate shipping information.
     </p>
 
-    <h2>View Live Container Status, Location & Delivery Updates</h2>
+    <h2>View Container Tracking Results & Status</h2>
     <p>
-      Once your tracking details load, you can access live container updates including current GPS-based location (if supported), port arrival confirmation, vessel berthing times, unloading updates, transit progress, and estimated delivery dates. This transparency ensures full control over your logistics operations. Whether your shipment is traveling by ocean, rail, or road within the United States, our tracking dashboard consolidates all updates in real time, helping you make informed decisions and reduce unexpected shipment disruptions.
+      Once you submit your shipment details, our online tracking tool displays detailed results including current container location, last movement event, loading or unloading updates, vessel name, and estimated arrival date. These insights allow you to monitor shipment progress in real-time and track any changes in transit caused by weather conditions, port congestion, customs inspections, or vessel delays. With accurate tracking data, you can plan ahead and communicate more effectively with customers, suppliers, or transportation partners.
     </p>
 
-    <h3>Submit Container Number and Carrier Details</h3>
+    <h3>Provide Container Number and Shipping Line</h3>
     <p>
-      For accurate results, always submit the correct container number along with the shipping line associated with your shipment. This ensures our system retrieves the most relevant tracking data from the corresponding carrier. Supported carriers include Maersk, MSC, CMA CGM, Hapag-Lloyd, COSCO, Evergreen, ONE, ZIM, and many more. Providing accurate details helps speed up the tracking process and improves data precision.
+      Providing the correct container number and shipping line helps the system connect with the exact carrier database, ensuring accurate tracking results. Each container number uniquely identifies your shipment, while carrier information ensures the search is aligned with the correct operational records.
     </p>
 
-    <h3>Add Booking Reference or Bill of Lading (BOL) Information</h3>
+    <h3>Add Booking Reference or Bill of Lading Details</h3>
     <p>
-      In cases where additional verification is required, adding your booking reference or Bill of Lading (BOL) number can help refine tracking results. This option is especially useful for high-volume shipments, export-import documentation, and multi-container bookings. Including these details allows our platform to connect shipment data more efficiently, ensuring that all relevant container updates are captured.
+      If you do not have the container number, adding the booking reference or bill of lading number is an effective alternative. Carriers use these details to track entire shipments even before containers are assigned or during multi-container bookings.
     </p>
 
-    <h3>Check Estimated Arrival Date & Current U.S. Port Location</h3>
+    <h3>Estimated Arrival Date & Current Location Updates</h3>
     <p>
-      The final section of your container tracking results displays the estimated arrival date, current port location, and upcoming transit milestones. This information helps businesses plan trucking schedules, warehouse availability, customs clearance, and final delivery operations. Whether your shipment is inbound or outbound, knowing the ETA and physical location of your container is essential for timely and well-coordinated logistics.
+      Your tracking results will also provide an estimated arrival date based on vessel schedules and port operations. Real-time location updates help you understand your container’s journey, anticipate delays, and make informed logistics decisions. These insights allow businesses to streamline operations, reduce downtime, and plan delivery arrangements in advance.
     </p>
   </section>
+
+  <!-- Hero/intro (kept minimal since main SEO intro above) -->
+  <section class="hero" style="align-items:flex-start;">
+
 
 </main>
 
