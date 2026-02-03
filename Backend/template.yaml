@@ -567,7 +567,7 @@ Resources:
   ListListingsFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: Backend/lambda/list/list_listing
+      CodeUri: lambda/list/list_listing
       Handler: app.handler
       Runtime: python3.12
       Policies:
