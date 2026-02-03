@@ -587,7 +587,7 @@ Resources:
   CreateListingFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: Backend/lambda/list/create_listing/
+      CodeUri: lambda/list/create_listing/
       Handler: app.handler
       Runtime: python3.12
       Policies:
@@ -607,7 +607,7 @@ Resources:
   PresignUploadFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: Backend/lambda/list/book
+      CodeUri: lambda/list/book
       Handler: app.handler
       Runtime: python3.12
       Policies:
@@ -627,7 +627,7 @@ Resources:
   ApiFunc:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: Backend/lambda/Apifunc
+      CodeUri: lambda/Apifunc
       Handler: index.handler
       Policies:
         - DynamoDBCrudPolicy:
@@ -665,7 +665,7 @@ Resources:
   SellListListingsFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: Backend/lambda/sell/list_listing
+      CodeUri: lambda/sell/list_listing
       Handler: app.handler
       Runtime: python3.12
       Policies:
@@ -685,7 +685,7 @@ Resources:
   SellCreateListingFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: Backend/lambda/sell/create_listing
+      CodeUri: lambda/sell/create_listing
       Handler: app.handler
       Runtime: python3.12
       Policies:
@@ -705,7 +705,7 @@ Resources:
   SellPresignUploadFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: Backend/lambda/sell/presign_upload
+      CodeUri: lambda/sell/presign_upload
       Handler: app.handler
       Runtime: python3.12
       Policies:
