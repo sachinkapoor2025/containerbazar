@@ -520,14 +520,14 @@ Resources:
       UserPoolId: !Ref SellUserPool
 
   SiteOAC:
-  Type: AWS::CloudFront::OriginAccessControl
-  Properties:
-    OriginAccessControlConfig:
-      Name: !Sub "${AWS::StackName}-oac"
-      Description: Access S3 bucket securely from CloudFront
-      SigningBehavior: always
-      SigningProtocol: sigv4
-      OriginAccessControlOriginType: s3
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "${AWS::StackName}-oac"
+        Description: Access S3 bucket securely from CloudFront
+        SigningBehavior: always
+        SigningProtocol: sigv4
+        OriginAccessControlOriginType: s3
 
   CFDistribution:
     Type: AWS::CloudFront::Distribution
@@ -538,7 +538,7 @@ Resources:
         Origins:
           - Id: S3Origin
             DomainName: !GetAtt WebBucket.RegionalDomainName
-            S3OriginConfig: {}
+            # S3OriginConfig: {}
             OriginAccessControlId: !GetAtt SiteOAC.Id
           - Id: ApiOrigin
             DomainName: !Sub "${HttpApi}.execute-api.${AWS::Region}.amazonaws.com"
@@ -564,67 +564,65 @@ Resources:
         PriceClass: PriceClass_100
 
 
+  ListListingsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/rent/list/
+      Handler: app.handler
+      Runtime: python3.12
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref RentListingsTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref RentListingsTable
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /rent/listings
+            Method: GET
+            RestApiId: !Ref RentApi
 
+  CreateListingFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/rent/create/
+      Handler: app.handler
+      Runtime: python3.12
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref RentListingsTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref RentListingsTable
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /rent/listings
+            Method: POST
+            RestApiId: !Ref RentApi
 
-ListListingsFunction:
-  Type: AWS::Serverless::Function
-  Properties:
-    CodeUri: functions/rent/list/
-    Handler: app.handler
-    Runtime: python3.12
-    Policies:
-      - DynamoDBReadPolicy:
-          TableName: !Ref RentListingsTable
-    Environment:
-      Variables:
-        TABLE_NAME: !Ref RentListingsTable
-    Events:
-      ApiEvent:
-        Type: Api
-        Properties:
-          Path: /rent/listings
-          Method: GET
-          RestApiId: !Ref RentApi
-
-CreateListingFunction:
-  Type: AWS::Serverless::Function
-  Properties:
-    CodeUri: functions/rent/create/
-    Handler: app.handler
-    Runtime: python3.12
-    Policies:
-      - DynamoDBWritePolicy:
-          TableName: !Ref RentListingsTable
-    Environment:
-      Variables:
-        TABLE_NAME: !Ref RentListingsTable
-    Events:
-      ApiEvent:
-        Type: Api
-        Properties:
-          Path: /rent/listings
-          Method: POST
-          RestApiId: !Ref RentApi
-
-PresignUploadFunction:
-  Type: AWS::Serverless::Function
-  Properties:
-    CodeUri: functions/rent/presign/
-    Handler: app.handler
-    Runtime: python3.12
-    Policies:
-      - S3CrudPolicy:
-          BucketName: !Ref RentMediaBucket
-    Environment:
-      Variables:
-        BUCKET_NAME: !Ref RentMediaBucket
-    Events:
-      ApiEvent:
-        Type: Api
-        Properties:
-          Path: /rent/presign
-          Method: POST
-          RestApiId: !Ref RentApi
+  PresignUploadFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/rent/presign/
+      Handler: app.handler
+      Runtime: python3.12
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref RentMediaBucket
+      Environment:
+        Variables:
+          BUCKET_NAME: !Ref RentMediaBucket
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /rent/presign
+            Method: POST
+            RestApiId: !Ref RentApi
 
   ApiFunc:
     Type: AWS::Serverless::Function
@@ -664,84 +662,65 @@ PresignUploadFunction:
             Path: /api/track/details
             Method: POST
 
-
-
-  # ---------- DynamoDB ----------
-  SubmissionsTable:
-    Type: AWS::DynamoDB::Table
+  SellListListingsFunction:
+    Type: AWS::Serverless::Function
     Properties:
-      BillingMode: PAY_PER_REQUEST
-      AttributeDefinitions:
-        - AttributeName: id
-          AttributeType: S
-      KeySchema:
-        - AttributeName: id
-          KeyType: HASH
-      SSESpecification: { SSEEnabled: true }
+      CodeUri: functions/sell/list/
+      Handler: app.handler
+      Runtime: python3.12
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref SellListingsTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref SellListingsTable
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /sell/listings
+            Method: GET
+            RestApiId: !Ref SellApi
 
-  CacheTable:
-    Type: AWS::DynamoDB::Table
+  SellCreateListingFunction:
+    Type: AWS::Serverless::Function
     Properties:
-      BillingMode: PAY_PER_REQUEST
-      AttributeDefinitions:
-        - AttributeName: container
-          AttributeType: S
-      KeySchema:
-        - AttributeName: container
-          KeyType: HASH
-      SSESpecification: { SSEEnabled: true }
+      CodeUri: functions/sell/create/
+      Handler: app.handler
+      Runtime: python3.12
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref SellListingsTable
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref SellListingsTable
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /sell/listings
+            Method: POST
+            RestApiId: !Ref SellApi
 
-  UsersTable:
-    Type: AWS::DynamoDB::Table
+  SellPresignUploadFunction:
+    Type: AWS::Serverless::Function
     Properties:
-      BillingMode: PAY_PER_REQUEST
-      AttributeDefinitions:
-        - AttributeName: phone
-          AttributeType: S
-        - AttributeName: email
-          AttributeType: S
-      KeySchema:
-        - AttributeName: phone
-          KeyType: HASH
-      GlobalSecondaryIndexes:
-        - IndexName: EmailIndex
-          KeySchema:
-            - AttributeName: email
-              KeyType: HASH
-          Projection:
-            ProjectionType: ALL
-      SSESpecification: { SSEEnabled: true }
-
-  # ---------- S3 + CloudFront ----------
-  WebBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      OwnershipControls:
-        Rules:
-          - ObjectOwnership: BucketOwnerEnforced
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
-
-
-  WebBucketPolicy:
-    Type: AWS::S3::BucketPolicy
-    Properties:
-      Bucket: !Ref WebBucket
-      PolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Sid: AllowCloudFrontServiceGet
-            Effect: Allow
-            Principal:
-              Service: cloudfront.amazonaws.com
-            Action: "s3:GetObject"
-            Resource: !Sub "${WebBucket.Arn}/*"
-            Condition:
-              StringEquals:
-                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CFDistribution}"
+      CodeUri: functions/sell/presign/
+      Handler: app.handler
+      Runtime: python3.12
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref SellMediaBucket
+      Environment:
+        Variables:
+          BUCKET_NAME: !Ref SellMediaBucket
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /sell/presign
+            Method: POST
+            RestApiId: !Ref SellApi
 
 Outputs:
   CloudFrontURL:
@@ -752,99 +731,3 @@ Outputs:
     Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com"
   UsersTableName:
     Value: !Ref UsersTable
-
-
-# === AUTO-ADDED RESOURCES: Sell ===
-SellListingsTable:
-  Type: AWS::DynamoDB::Table
-  Properties:
-    BillingMode: PAY_PER_REQUEST
-    AttributeDefinitions:
-      - AttributeName: listingId
-        AttributeType: S
-    KeySchema:
-      - AttributeName: listingId
-        KeyType: HASH
-    TableName: !Sub "${AWS::StackName}-SellListings"
-
-SellMediaBucket:
-  Type: AWS::S3::Bucket
-  Properties:
-    CorsConfiguration:
-      CorsRules:
-        - AllowedHeaders: ["*"]
-          AllowedMethods: ["GET", "PUT", "HEAD"]
-          AllowedOrigins: ["*"]
-          MaxAge: 3000
-
-
-
-SellApi:
-  Type: AWS::Serverless::Api
-  Properties:
-    Name: !Sub "${AWS::StackName}-SellApi"
-    StageName: prod
-    Cors:
-      AllowMethods: "'GET,POST,OPTIONS'"
-      AllowHeaders: "'*'"
-      AllowOrigin: "'*'"
-
-SellListListingsFunction:
-  Type: AWS::Serverless::Function
-  Properties:
-    CodeUri: functions/sell/list/
-    Handler: app.handler
-    Runtime: python3.12
-    Policies:
-      - DynamoDBReadPolicy:
-          TableName: !Ref SellListingsTable
-    Environment:
-      Variables:
-        TABLE_NAME: !Ref SellListingsTable
-    Events:
-      ApiEvent:
-        Type: Api
-        Properties:
-          Path: /sell/listings
-          Method: GET
-          RestApiId: !Ref SellApi
-
-SellCreateListingFunction:
-  Type: AWS::Serverless::Function
-  Properties:
-    CodeUri: functions/sell/create/
-    Handler: app.handler
-    Runtime: python3.12
-    Policies:
-      - DynamoDBWritePolicy:
-          TableName: !Ref SellListingsTable
-    Environment:
-      Variables:
-        TABLE_NAME: !Ref SellListingsTable
-    Events:
-      ApiEvent:
-        Type: Api
-        Properties:
-          Path: /sell/listings
-          Method: POST
-          RestApiId: !Ref SellApi
-
-SellPresignUploadFunction:
-  Type: AWS::Serverless::Function
-  Properties:
-    CodeUri: functions/sell/presign/
-    Handler: app.handler
-    Runtime: python3.12
-    Policies:
-      - S3CrudPolicy:
-          BucketName: !Ref SellMediaBucket
-    Environment:
-      Variables:
-        BUCKET_NAME: !Ref SellMediaBucket
-    Events:
-      ApiEvent:
-        Type: Api
-        Properties:
-          Path: /sell/presign
-          Method: POST
-          RestApiId: !Ref SellApi
