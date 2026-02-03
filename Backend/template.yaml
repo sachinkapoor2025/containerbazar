@@ -7,6 +7,12 @@ Parameters:
     Type: String
     Default: containerbazar.com
 
+  OpenAIKey:
+    Type: String
+    Default : ""
+    NoEcho: true
+    Description: OpenAI API Key
+
 Globals:
   Function:
     # Default for most Python lambdas
@@ -1275,6 +1281,31 @@ Resources:
             RestApiId: !Ref Api
             Path: /blog/update
             Method: PUT
+  ChatApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: !Sub "${AWS::StackName}-chat"
+      StageName: Prod
+      Cors:
+        AllowMethods: "'POST,OPTIONS'"
+        AllowHeaders: "'Content-Type'"
+        AllowOrigin: "'*'"
+
+  ChatbotFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-chat"
+      Handler: lambda/chat/handler.lambda_handler
+      Environment:
+        Variables:
+          OPENAI_API_KEY: !Ref OpenAIKey
+      Events:
+        ChatApiEvent:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ChatApi
+            Path: /chat
+            Method: POST
 
 
   #################################
