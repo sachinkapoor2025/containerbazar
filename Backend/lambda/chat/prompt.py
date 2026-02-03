@@ -41,7 +41,7 @@ def build_prompt(
 
     # ================= BRAND & REGION =================
     if site == "containersclub":
-        brand_name = "Containers Club"
+        brand_name = "Container Bazar"
         website = "https://containerbazar.com"
         region = "United States"
     else:
