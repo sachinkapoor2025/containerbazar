@@ -519,15 +519,15 @@ Resources:
       GroupName: Employee
       UserPoolId: !Ref SellUserPool
 
-    SiteOAC:
-    Type: AWS::CloudFront::OriginAccessControl
-    Properties:
-      OriginAccessControlConfig:
-        Name: !Sub "${AWS::StackName}-oac"
-        Description: Access S3 bucket securely from CloudFront
-        SigningBehavior: always
-        SigningProtocol: sigv4
-        OriginAccessControlOriginType: s3
+  SiteOAC:
+  Type: AWS::CloudFront::OriginAccessControl
+  Properties:
+    OriginAccessControlConfig:
+      Name: !Sub "${AWS::StackName}-oac"
+      Description: Access S3 bucket securely from CloudFront
+      SigningBehavior: always
+      SigningProtocol: sigv4
+      OriginAccessControlOriginType: s3
 
   CFDistribution:
     Type: AWS::CloudFront::Distribution
