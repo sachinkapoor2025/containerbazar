@@ -567,7 +567,7 @@ Resources:
   ListListingsFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: functions/rent/list/
+      CodeUri: Backend/lambda/list/list_listing
       Handler: app.handler
       Runtime: python3.12
       Policies:
@@ -587,7 +587,7 @@ Resources:
   CreateListingFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: functions/rent/create/
+      CodeUri: Backend/lambda/list/create_listing/
       Handler: app.handler
       Runtime: python3.12
       Policies:
@@ -607,7 +607,7 @@ Resources:
   PresignUploadFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: functions/rent/presign/
+      CodeUri: Backend/lambda/list/book
       Handler: app.handler
       Runtime: python3.12
       Policies:
@@ -627,8 +627,8 @@ Resources:
   ApiFunc:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: .
-      Handler: lambda/index.handler
+      CodeUri: Backend/lambda/Apifunc
+      Handler: index.handler
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref SubmissionsTable
@@ -665,7 +665,7 @@ Resources:
   SellListListingsFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: functions/sell/list/
+      CodeUri: Backend/lambda/sell/list_listing
       Handler: app.handler
       Runtime: python3.12
       Policies:
@@ -685,7 +685,7 @@ Resources:
   SellCreateListingFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: functions/sell/create/
+      CodeUri: Backend/lambda/sell/create_listing
       Handler: app.handler
       Runtime: python3.12
       Policies:
@@ -705,7 +705,7 @@ Resources:
   SellPresignUploadFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: functions/sell/presign/
+      CodeUri: Backend/lambda/sell/presign_upload
       Handler: app.handler
       Runtime: python3.12
       Policies:
