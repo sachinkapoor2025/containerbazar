@@ -1319,10 +1319,8 @@ Outputs:
   # Cognito resources
   RentUserPoolId:       { Value: !Ref RentUserPool }
   RentUserPoolClientId: { Value: !Ref RentUserPoolClient }
-  RentDomainName:       { Value: !GetAtt RentDomain.Domain }
   SellUserPoolId:   { Value: !Ref SellUserPool }
   SellUserPoolClientId: { Value: !Ref SellUserPoolClient }
-  SellDomainName:   { Value: !GetAtt SellDomain.Domain }
 
   # SNS Topic
   BookingNotificationsTopicArn: { Value: !Ref BookingNotificationsTopic }
