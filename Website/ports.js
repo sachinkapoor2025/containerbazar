@@ -1,403 +1,44 @@
 (async function () {
   // ------------ STATIC STATES + CITIES -------------
   const IN_STATE_CITIES = {
-    "Alabama": [
-      "Mobile",
-      "Birmingham",
-      "Huntsville",
-      "Montgomery",
-      "Tuscaloosa",
-      "Daphne",
-      "Fairhope",
-      "Gulf Shores",
-      "Mobile Bay"
-    ],
-    "Alaska": [
-      "Anchorage",
-      "Juneau",
-      "Sitka",
-      "Ketchikan",
-      "Kodiak",
-      "Valdez",
-      "Nome",
-      "Bethel"
-    ],
-    "Arizona": [
-      "Phoenix",
-      "Tucson",
-      "Mesa",
-      "Flagstaff",
-      "Yuma",
-      "Scottsdale",
-      "Chandler"
-    ],
-    "Arkansas": [
-      "Little Rock",
-      "Fayetteville",
-      "Fort Smith",
-      "Jonesboro",
-      "Helena"
-    ],
-    "California": [
-      "Los Angeles",
-      "Long Beach",
-      "San Diego",
-      "San Francisco",
-      "Oakland",
-      "Richmond",
-      "Port Hueneme",
-      "San Pedro",
-      "Santa Barbara",
-      "Monterey",
-      "Sacramento",
-      "Stockton",
-      "Fresno",
-      "Anaheim"
-    ],
-    "Colorado": [
-      "Denver",
-      "Colorado Springs",
-      "Fort Collins",
-      "Aurora"
-    ],
-    "Connecticut": [
-      "New Haven",
-      "Bridgeport",
-      "Hartford",
-      "Stamford",
-      "Norwalk",
-      "New London",
-      "Groton"
-    ],
-    "Delaware": [
-      "Wilmington",
-      "Newark",
-      "Dover",
-      "Lewes",
-      "New Castle"
-    ],
-    "Florida": [
-      "Jacksonville",
-      "Miami",
-      "Port Everglades",
-      "Tampa",
-      "St. Petersburg",
-      "Fort Lauderdale",
-      "Pensacola",
-      "Tallahassee",
-      "Panama City",
-      "Key West",
-      "Fort Myers",
-      "Cape Canaveral",
-      "Port Canaveral"
-    ],
-    "Georgia": [
-      "Savannah",
-      "Brunswick",
-      "Atlanta",
-      "Augusta",
-      "Columbus",
-      "Macon"
-    ],
-    "Hawaii": [
-      "Honolulu",
-      "Hilo",
-      "Kahului",
-      "Kalaeloa",
-      "Kailua-Kona",
-      "Lihue"
-    ],
-    "Idaho": [
-      "Boise",
-      "Coeur d'Alene",
-      "Lewiston"
-    ],
-    "Illinois": [
-      "Chicago",
-      "Peoria",
-      "Springfield",
-      "Rockford",
-      "Quincy"
-    ],
-    "Indiana": [
-      "Indianapolis",
-      "Gary",
-      "South Bend",
-      "Evansville",
-      "Michigan City"
-    ],
-    "Iowa": [
-      "Des Moines",
-      "Davenport",
-      "Cedar Rapids",
-      "Council Bluffs"
-    ],
-    "Kansas": [
-      "Wichita",
-      "Topeka",
-      "Kansas City",
-      "Dodge City"
-    ],
-    "Kentucky": [
-      "Louisville",
-      "Lexington",
-      "Owensboro",
-      "Paducah"
-    ],
-    "Louisiana": [
-      "New Orleans",
-      "Baton Rouge",
-      "Lafayette",
-      "Lake Charles",
-      "Bossier City",
-      "Shreveport",
-      "Pointe a la Hache",
-      "Grand Isle",
-      "Port Fourchon",
-      "Plaquemines Parish"
-    ],
-    "Maine": [
-      "Portland",
-      "Bangor",
-      "Kennebunkport",
-      "Rockland",
-      "Bath",
-      "Augusta"
-    ],
-    "Maryland": [
-      "Baltimore",
-      "Annapolis",
-      "Salisbury",
-      "Havre de Grace",
-      "Cambridge",
-      "Bowie"
-    ],
-    "Massachusetts": [
-      "Boston",
-      "Fall River",
-      "New Bedford",
-      "Quincy",
-      "Weymouth",
-      "Salem",
-      "Gloucester",
-      "Plymouth"
-    ],
-    "Michigan": [
-      "Detroit",
-      "Port Huron",
-      "Ludington",
-      "Muskegon",
-      "Escanaba",
-      "Marquette",
-      "Sault Ste. Marie"
-    ],
-    "Minnesota": [
-      "Duluth",
-      "Minneapolis",
-      "St. Paul",
-      "Rochester"
-    ],
-    "Mississippi": [
-      "Gulfport",
-      "Biloxi",
-      "Pascagoula",
-      "Jackson",
-      "Vicksburg"
-    ],
-    "Missouri": [
-      "St. Louis",
-      "Kansas City",
-      "Springfield",
-      "Sikeston"
-    ],
-    "Montana": [
-      "Billings",
-      "Missoula",
-      "Great Falls"
-    ],
-    "Nebraska": [
-      "Omaha",
-      "Lincoln",
-      "Kearney"
-    ],
-    "Nevada": [
-      "Las Vegas",
-      "Reno",
-      "Henderson"
-    ],
-    "New Hampshire": [
-      "Portsmouth",
-      "Manchester",
-      "Concord",
-      "Nashua"
-    ],
-    "New Jersey": [
-      "Newark",
-      "Jersey City",
-      "Bayonne",
-      "Elizabeth",
-      "Hoboken",
-      "Camden",
-      "Atlantic City",
-      "Salem"
-    ],
-    "New Mexico": [
-      "Albuquerque",
-      "Santa Fe",
-      "Las Cruces"
-    ],
-    "New York": [
-      "New York",
-      "Buffalo",
-      "Rochester",
-      "Syracuse",
-      "Albany",
-      "Schenectady",
-      "Oswego",
-      "Suffolk",
-      "Niagara Falls",
-      "Rochester Harbor"
-    ],
-    "North Carolina": [
-      "Wilmington",
-      "Morehead City",
-      "New Bern",
-      "Beaufort",
-      "Jacksonville",
-      "Charlotte",
-      "Raleigh",
-      "Greenville"
-    ],
-    "North Dakota": [
-      "Fargo",
-      "Bismarck",
-      "Grand Forks"
-    ],
-    "Ohio": [
-      "Cleveland",
-      "Toledo",
-      "Sandusky",
-      "Ashtabula",
-      "Portsmouth",
-      "Columbus",
-      "Cincinnati"
-    ],
-    "Oklahoma": [
-      "Tulsa",
-      "Oklahoma City",
-      "Lawton"
-    ],
-    "Oregon": [
-      "Portland",
-      "Astoria",
-      "Coos Bay",
-      "Newport",
-      "Eugene",
-      "Salem"
-    ],
-    "Pennsylvania": [
-      "Philadelphia",
-      "Pittsburgh",
-      "Erie",
-      "Allentown",
-      "Harrisburg",
-      "Chester",
-      "Bristol",
-      "Marcus Hook"
-    ],
-    "Rhode Island": [
-      "Providence",
-      "Newport",
-      "Wickford",
-      "South Kingstown"
-    ],
-    "South Carolina": [
-      "Charleston",
-      "Georgetown",
-      "Myrtle Beach",
-      "Beaufort",
-      "Hilton Head",
-      "Mount Pleasant",
-      "North Charleston"
-    ],
-    "South Dakota": [
-      "Sioux Falls",
-      "Rapid City",
-      "Pierre"
-    ],
-    "Tennessee": [
-      "Memphis",
-      "Nashville",
-      "Knoxville",
-      "Chattanooga",
-      "Johnson City"
-    ],
-    "Texas": [
-      "Houston",
-      "Galveston",
-      "Corpus Christi",
-      "Port Arthur",
-      "Beaumont",
-      "Brownsville",
-      "Texas City",
-      "San Antonio",
-      "Dallas",
-      "Fort Worth",
-      "Port of Brownsville"
-    ],
-    "Utah": [
-      "Salt Lake City",
-      "Ogden",
-      "Provo"
-    ],
-    "Vermont": [
-      "Burlington",
-      "Montpelier",
-      "Rutland"
-    ],
-    "Virginia": [
-      "Norfolk",
-      "Virginia Beach",
-      "Newport News",
-      "Portsmouth",
-      "Hampton",
-      "Suffolk",
-      "Richmond",
-      "Hampton Roads",
-      "Cape Charles"
-    ],
-    "Washington": [
-      "Seattle",
-      "Tacoma",
-      "Everett",
-      "Olympia",
-      "Bellingham",
-      "Anacortes",
-      "Port Townsend"
-    ],
-    "West Virginia": [
-      "Charleston",
-      "Huntington",
-      "Morgantown"
-    ],
-    "Wisconsin": [
-      "Milwaukee",
-      "Green Bay",
-      "Duluth (served via MN)",
-      "Superior"
-    ],
-    "Wyoming": [
-      "Cheyenne",
-      "Casper",
-      "Laramie"
-    ],
-    // District / Territories
-    "District of Columbia": ["Washington"],
-    "Puerto Rico": ["San Juan", "Ponce", "Mayaguez", "Arecibo", "Fajardo", "Guayama", "Ceiba"],
-    "Guam": ["Hagatna", "Agana Heights", "Tamuning"],
-    "U.S. Virgin Islands": ["Charlotte Amalie", "Christiansted", "Frederiksted"],
-    "American Samoa": ["Pago Pago"],
-    "Northern Mariana Islands": ["Saipan", "Tinian", "Rota"]
+    "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Tirupati", "Kakinada"],
+    "Arunachal Pradesh": ["Itanagar", "Tawang"],
+    "Assam": ["Guwahati", "Dibrugarh", "Silchar"],
+    "Bihar": ["Patna", "Gaya", "Bhagalpur"],
+    "Chhattisgarh": ["Raipur", "Bhilai", "Bilaspur"],
+    "Goa": ["Panaji", "Mormugao", "Margao"],
+    "Gujarat": ["Ahmedabad", "Surat", "Mundra", "Kandla", "Bhavnagar", "Porbandar", "Pipavav"],
+    "Haryana": ["Gurugram", "Faridabad", "Panipat"],
+    "Himachal Pradesh": ["Shimla", "Solan"],
+    "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad"],
+    "Karnataka": ["Bengaluru", "Mangaluru", "Karwar"],
+    "Kerala": ["Kochi", "Kollam", "Kozhikode", "Thiruvananthapuram"],
+    "Madhya Pradesh": ["Indore", "Bhopal", "Gwalior"],
+    "Maharashtra": ["Mumbai", "Nhava Sheva", "Navi Mumbai", "Pune", "Nagpur", "Ratnagiri"],
+    "Manipur": ["Imphal"],
+    "Meghalaya": ["Shillong"],
+    "Mizoram": ["Aizawl"],
+    "Nagaland": ["Kohima", "Dimapur"],
+    "Odisha": ["Paradip", "Bhubaneswar", "Dhamra", "Gopalpur"],
+    "Punjab": ["Amritsar", "Ludhiana", "Jalandhar", "Ferozepur"],
+    "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Bhiwadi"],
+    "Sikkim": ["Gangtok"],
+    "Tamil Nadu": ["Chennai", "Tuticorin", "Ennore", "Cuddalore"],
+    "Telangana": ["Hyderabad", "Warangal"],
+    "Tripura": ["Agartala"],
+    "Uttar Pradesh": ["Noida", "Agra", "Meerut", "Kanpur", "Varanasi"],
+    "Uttarakhand": ["Dehradun", "Haridwar"],
+    "West Bengal": ["Kolkata", "Haldia", "Durgapur"],
+
+    // Union Territories
+    "Andaman and Nicobar Islands": ["Port Blair"],
+    "Chandigarh": ["Chandigarh"],
+    "Dadra and Nagar Haveli and Daman and Diu": ["Daman", "Silvassa"],
+    "Delhi": ["New Delhi", "Dwarka"],
+    "Jammu and Kashmir": ["Jammu", "Srinagar"],
+    "Ladakh": ["Leh"],
+    "Lakshadweep": ["Kavaratti"],
+    "Puducherry": ["Puducherry", "Karaikal"]
   };
 
   // ---------------------------------- CONFIG / ELEMENTS ----------------------------------
