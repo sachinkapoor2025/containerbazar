@@ -57,10 +57,10 @@ window.BLOG_S3_UPLOAD_URL = "https://containers-club-dev-blog-media.s3.amazonaws
 // ===============================
 
 window.RENT_COGNITO_DOMAIN =
-  "https://rent-club-auth.auth.us-east-1.amazoncognito.com";
+  "https://containerbazar-rent-club-auth.auth.ap-south-1.amazoncognito.com";
 
 window.RENT_COGNITO_CLIENT_ID =
-  "5tde7c3ddupmvr9c90417devc3";
+  "2u3okdr8vg6ptqfqenjvc2lamp";
 
 // Manually created Cognito for Sell
 
@@ -69,10 +69,10 @@ window.RENT_COGNITO_CLIENT_ID =
 // ===============================
 
 window.SELL_COGNITO_DOMAIN =
-  "https://sell-club-auth.auth.us-east-1.amazoncognito.com";
+  "https://containerbazar-sell-club-auth.auth.ap-south-1.amazoncognito.com";
 
 window.SELL_COGNITO_CLIENT_ID =
-  "3264ar1beegeb84aodivq3poeh";
+  "63547odmmjevc08uku8jv5v0un";
 
 // Default to Rent config (can be overridden per page)
 window.COGNITO_DOMAIN = window.RENT_COGNITO_DOMAIN;
