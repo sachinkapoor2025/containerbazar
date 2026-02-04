@@ -67,7 +67,7 @@ jobs:
       # ----------------------------
       - name: Deploy frontend to S3
         run: |
-          aws s3 sync Website/ s3://cb-isrt-webbucket-hqfvmuesv9jr \
+          aws s3 sync Website/ s3://cb-2-1-web \
             --delete \
             --exact-timestamps
 
@@ -75,5 +75,5 @@ jobs:
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id ER4TUDBM4KG3S \
+            --distribution-id ED1ZA310RW258 \
             --paths "/*"
