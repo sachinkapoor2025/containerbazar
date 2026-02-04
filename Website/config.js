@@ -1,6 +1,7 @@
 window.APP_CONFIG = {
   // REST API created by `Api` in your template
-  apiBaseUrl: "https://o7e18622e2.execute-api.us-east-1.amazonaws.com/prod",
+  // apiBaseUrl: "https://o7e18622e2.execute-api.us-east-1.amazonaws.com/prod",
+  apiBaseUrl: "https://qk9ob7wj3h.execute-api.ap-south-1.amazonaws.com/prod",
 
   newsEndpoint: "/news",
   priceEndpoint: "/prices",
