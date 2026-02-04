@@ -70,7 +70,7 @@ def handler(event, context):
             "deliveryAvailable": body.get("deliveryAvailable", False),
             "rentalTerms": body.get("rentalTerms"),
             "status": body.get("status", "active"),
-            "currency": body.get("currency", "USD"),
+            "currency": body.get("currency", "INR"),
             "createdAt": datetime.utcnow().isoformat() + "Z",
             "ownerId": owner_id,
         }

@@ -333,7 +333,7 @@ if (formEl) {
         deliveryAvailable: formData.has('deliveryAvailable'),
         rentalTerms: formData.get('rentalTerms'),
         status: 'active',
-        currency: 'USD'
+        currency: 'INR'
       };
 
       const result = await authFetch(CONFIG.API_BASE + "/rent/listings", {
