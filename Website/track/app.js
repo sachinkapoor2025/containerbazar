@@ -1,6 +1,7 @@
 // ------- CONFIG -------
 // Prefer an explicit API root; leave empty to use relative /api via CloudFront behavior.
-const API_ROOT = "https://122nnbze47.execute-api.ap-south-1.amazonaws.com/api"; // <- set to "" to use relative
+// const API_ROOT = "https://122nnbze47.execute-api.ap-south-1.amazonaws.com/api"; // <- set to "" to use relative
+const API_ROOT = "https://qjf9zc6veg.execute-api.ap-south-1.amazonaws.com/api"; // <- set to "" to use relative
 
 function api(path) {
   const base = (API_ROOT || "").replace(/\/+$/, "");
